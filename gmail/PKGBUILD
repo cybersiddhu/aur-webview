@@ -8,12 +8,12 @@ arch=('x86_64')
 url="https://github.com/cybersiddhu/$_pkgsrc"
 license=('BSD-2-Clause')
 depends=('gtk3' 'webkit2gtk')
-makedepends=('go' 'git', 'pkgconf')
-source=("$url")
-sha256sums=('feb6958')
+makedepends=('go' 'git' 'pkgconf')
+source=("git+$url")
+sha256sums=('SKIP')
 
 build() {
-  cd "$_pkgfolder"
+  cd "$_pkgsrc/$_pkgfolder"
   export CGO_CPPFLAGS="${CPPFLAGS}"
   export CGO_CFLAGS="${CFLAGS}"
   export CGO_CXXFLAGS="${CXXFLAGS}"
@@ -23,6 +23,6 @@ build() {
 }
 
 package() {
-  cd "$_pkgfolder"
+  cd "$_pkgsrc/$_pkgfolder"
   install -Dm755 $pkgname "$pkgdir"/usr/bin/$pkgname
 }
